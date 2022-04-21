@@ -1,0 +1,51 @@
+//Heap Sorting
+//Heap sort is a comparison-based sorting technique based on Binary Heap data structure. 
+//It is similar to selection sort where we first find the minimum element and place the minimum element at the beginning. 
+var Array_Length;  
+function heap_root(input, i) {
+    var left = 2 * i + 1;
+    var right = 2 * i + 2;
+    var max = i;
+    if (left < Array_Length && input[left] > input[max])
+    {
+        max = left;
+    }
+    if (right < Array_Length && input[right] > input[max])
+    {
+        max = right;
+    }
+    if (max != i) {
+        swap(input, i, max);
+        heap_root(input, max);
+    }
+}
+function swap(input, index_A, index_B) {
+    var temp = input[index_A];
+    input[index_A] = input[index_B];
+    input[index_B] = temp;
+}
+function heapSort(input) 
+{    
+    array_length = input.length;
+    for (var i = Math.floor(Array_Length / 2); i >= 0; i -= 1) 
+    {
+        heap_root(input, i);
+    }
+    for (i = input.length - 1; i > 0; i--) 
+    {
+        swap(input, 0, i);
+        Array_Length--;  
+        heap_root(input, 0);
+    }
+}
+var arr = [3, 0, 2, 5, -1, 4, 1,6,8,-3];
+console.log("Array elements:");
+console.log(arr);
+console.log("Heap Sort:");
+heapSort(arr);
+console.log(arr);
+//Output:
+//Array elements:
+//[ 3, 0, 2, 5, -1, 4, 1, 6, 8, -3 ]
+//Heap Sort:
+//[-3, -1, 0, 1, 2, 3,  4, 5, 6, 8 ]
