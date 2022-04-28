@@ -1,0 +1,32 @@
+# Heap sort
+def heapify(Arr, n, i):
+   Largest = i 
+   l = 2 * i + 1 
+   r = 2 * i + 2 
+   if l < n and Arr[i] < Arr[l]:
+      Largest = l
+   if r < n and Arr[Largest] < Arr[r]:
+      Largest = r
+
+   if Largest != i:
+      Arr[i],Arr[Largest] = Arr[Largest],Arr[i] 
+      heapify(Arr, n, Largest)
+def heapSort(Arr):
+   n = len(Arr)
+   for i in range(n, -1, -1):
+      heapify(Arr, n, i)
+   for i in range(n-1, 0, -1):
+      Arr[i], Arr[0] = Arr[0], Arr[i] 
+      heapify(Arr, i, 0)
+Arr = [-2,-1,-4,10,-5,2,5,3,8,6,5,4,7]
+heapSort(Arr)
+n = len(Arr)
+print("Unsorted Array:",Arr)
+print ("Sorted array is:")
+for i in range(n):
+   print (Arr[i],end=" ")
+#   Output-
+#   Unsorted Array: [-5, -4, -2, -1, 2, 3, 4, 5, 5, 6, 7, 8, 10]
+#Sorted array is:
+#-5 -4 -2 -1 2 3 4 5 5 6 7 8 10
+   
